@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product  </title>
+</head>
+<body>
+<h1>Product</h1>
+{% for item in product %}
+    <div>
+        <p>{{id}} {{item.p_type}} | {{item.p_kind}} | {{item.p_density}} | {{item.p_format}} | {{item.p_width}}x{{item.p_height}} мм  </p>
+        <p>Макет: {{item.file}}</p>
+        <p>Створений: {{item.created_at|date:'Y-m-d H:i'}}</p>
+    </div>
+    <hr>
+
+{% endfor %}
+</body>
+</html>

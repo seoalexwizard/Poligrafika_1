@@ -4,8 +4,8 @@ from django.http import HttpResponse
 from .models import Product
 
 def index(request):
-    # print(dir(request))
-    return HttpResponse('<h1>Спискок тестів</h1>')
+    product = Product.objects.order_by('-created_at')
+    return render(request, 'Product/index.html', {'product': product, 'order_id': 'Список Product'})
 
 def test(request):
     #print(dir(request))
