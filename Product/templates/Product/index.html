@@ -30,16 +30,16 @@
 </nav>
 
 <div class="container mt-3">
-    <h1>Order</h1>
+    <h1>Preflight</h1>
     <div class="row">
 
             {% for item in product %}
             <div class="card mb-3">
-                <h5 class="card-header">Order: {{ item.id }}</h5>
+                <h5 class="card-header">Замовлення: {{ item.order_id }}</h5>
                 <div class="card-body">
-                    <h5 class="card-title">{{ item.p_type }}</h5>
-                    <p class="card-text">{{ item.product}}</p>item.
-                    <a href="#" class="btn btn-primary">Details</a>
+                    <h5 class="card-title">{{ item.p_type }} | {{ item.p_kind.name }} | {{ item.p_width.name }}x{{ item.p_height.name }} | {{ item.p_format.name }} | {{ item.p_density.name }}</h5>
+                    <p class="card-text">{{ item.file}}</p>Макет:
+                    <a href="#" class="btn btn-primary">Завантажити</a>
                 </div>
                 <div class="card-footer text-muted">
                     {{ item.updated_at|date:"Y-m-d H:i:s" }}

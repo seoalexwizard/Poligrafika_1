@@ -46,7 +46,7 @@ class PaperType(models.Model):
 
 
 class Product(models.Model):
-    order_id = models.IntegerField(default=56, blank=True, null=True)
+    order_id = models.IntegerField(default=56, blank=True, null=True, verbose_name = '№')
     p_type =  models.ForeignKey(PaperType, on_delete=models.CASCADE)
     p_kind = models.ForeignKey(PaperKind, on_delete=models.CASCADE)
     p_density = models.ForeignKey(PaperDensity, on_delete=models.CASCADE)
