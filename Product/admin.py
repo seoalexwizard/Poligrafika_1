@@ -3,32 +3,17 @@ from django.contrib import admin
 from .models import Product
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('id', 'created_at', 'is_moved', 'file')
-
+    list_display = ('id', 'p_format', 'p_type','p_kind', 'p_density', 'p_width', 'p_height',  'created_at', 'updated_at', 'is_moved', 'file')
+    list_display_links = ('id', 'file')
+    search_fields = ('id', 'p_format', 'p_type','p_kind', 'p_density', 'p_width', 'p_height',  'created_at', 'updated_at', 'is_moved', 'file')
 
 
 admin.site.register(Product, ProductAdmin)
 
-from .models import PaperKind
-
+from .models import (PaperKind, PaperType, PaperDensity, PaperWidth, PaperHeight, PaperFormat)
 admin.site.register(PaperKind)
-
-from .models import PaperType
-
 admin.site.register(PaperType)
-
-from .models import PaperDensity
-
 admin.site.register(PaperDensity)
-
-from .models import PaperWidth
-
 admin.site.register(PaperWidth)
-
-from .models import PaperHeight
-
 admin.site.register(PaperHeight)
-
-from .models import PaperFormat
-
 admin.site.register(PaperFormat)
