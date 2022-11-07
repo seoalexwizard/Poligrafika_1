@@ -1,4 +1,5 @@
 from django.db import models
+from PIL import Image
 
 
 class PaperKind(models.Model):
@@ -65,3 +66,4 @@ class Product(models.Model):
         verbose_name = 'Продукт'
         verbose_name_plural = 'Продукти'
         ordering = ['-created_at']
+
