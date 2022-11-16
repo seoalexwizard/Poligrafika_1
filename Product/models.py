@@ -1,5 +1,8 @@
 from django.db import models
 from PIL import Image
+import os
+from mptt.models import MPTTModel, TreeForeignKey
+
 
 
 class PaperKind(models.Model):
@@ -14,6 +17,13 @@ class PaperFormat(models.Model):
 
     def __str__(self):
         return self.name
+
+path = 'D:/Poligrafika/Production'
+
+if not os.path.exists(path):
+    os.makedirs(path)
+else:
+    print('folder already exists')
 
 
 class PaperDensity(models.Model):
@@ -66,4 +76,3 @@ class Product(models.Model):
         verbose_name = 'Продукт'
         verbose_name_plural = 'Продукти'
         ordering = ['-created_at']
-

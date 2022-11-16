@@ -40,7 +40,21 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ item.p_type }} | {{ item.p_kind.name }} | {{ item.p_width.name }}x{{ item.p_height.name }} | {{ item.p_format.name }} | {{ item.p_density.name }}</h5>
                     <p class="card-text">{{ item.file}}</p>Макет:
-                    <a href="#" class="btn btn-primary">Завантажити</a>
+
+                    <!-- Button that triggers python logic -->
+
+                    <li class="list-group-item list-group-item-light">
+                        <h4 class = 'stat-title'>Function:</h4>
+
+                      <form action="/simple_function">
+
+                          <button id="stat-btn" class="btn">Do it</button>
+                      </form>
+                    </li>
+
+
+
+                    <a href=" {{item.file }}" class="btn btn-primary">  Завантажити</a>
                 </div>
                 <div class="card-footer text-muted">
                     {{ item.updated_at|date:"Y-m-d H:i:s" }}
