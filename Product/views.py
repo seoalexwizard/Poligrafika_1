@@ -42,15 +42,15 @@ def simple_function(request):
 
     file_zip.close()
 
-    file_zip = ['main.py', 'order-item-357146.zip']
+    file_zip = ['views.py', 'order-item-357146.zip']
     for file in file_zip:
         print(file, zipfile.is_zipfile(file))
 
-    directory = r'D:\Poligrafika'
+    directory = r'D:\Poligrafika\Poligrafika'
 
-    paper = r'D:\Poligrafika\Папір'
-    original = r'D:\Poligrafika\Оригінал'
-    arhiv = r'D:\Poligrafika\Архив'
+    paper = r'D:\Poligrafika\Poligrafika\Папір'
+    original = r'D:\Poligrafika\Poligrafika\Оригінал'
+    arhiv = r'D:\Poligrafika\Poligrafika\Архив'
 
     for file in os.listdir(directory):
         ext = os.path.splitext(file)[1]

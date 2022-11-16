@@ -44,17 +44,13 @@
                     <!-- Button that triggers python logic -->
 
                     <li class="list-group-item list-group-item-light">
-                        <h4 class = 'stat-title'>Function:</h4>
 
                       <form action="/simple_function">
 
-                          <button id="stat-btn" class="btn">Do it</button>
+                          <button id="stat-btn" class="btn btn-primary">Завантажити</button>
                       </form>
                     </li>
 
-
-
-                    <a href=" {{item.file }}" class="btn btn-primary">  Завантажити</a>
                 </div>
                 <div class="card-footer text-muted">
                     {{ item.updated_at|date:"Y-m-d H:i:s" }}
