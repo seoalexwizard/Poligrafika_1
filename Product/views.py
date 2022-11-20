@@ -3,6 +3,8 @@ import time, datetime, os
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Product
+import errno
+import os
 
 
 def index(request):
@@ -68,7 +70,16 @@ def simple_function(request):
             case '.zip':
                 shutil.move(src=rf'{directory}\{file}', dst=arhiv)
         folder = datetime.date.today()
-        os.makedirs(folder.strftime("Оригінал/%Y/%m/%d"), exist_ok=False)
+        try:
+            os.makedirs(folder.strftime("Оригінал/%Y/%m/%d"), exist_ok=False)
+        except (FileExistsError):
+            print(" File or directory is already exists")
+        except (FileNotFoundError):
+            print(" Path is not correct ")
+        except OSError:
+            print("Failed to create  %s " % folder)
+        else:
+            print("Successfully created the directory %s " % folder)
 
 
 
