@@ -1,7 +1,9 @@
+import time, datetime, os
+
 from django.shortcuts import render
 from django.http import HttpResponse
-
 from .models import Product
+
 
 def index(request):
     product = Product.objects.order_by('-created_at')
@@ -29,13 +31,16 @@ def home(request):
     }
     return render(request, 'home/home.html', context)
 
+
 def simple_function(request):
     import zipfile
     import shutil
     import os
+    import sys
 
+
+    os.chdir('D:\Poligrafika\Poligrafika\media')
     file_zip = zipfile.ZipFile('order-item-357146.zip', 'r')
-
     file_zip.extractall('./')
     for file_info in file_zip.infolist():
         print(file_info.filename, file_info.date_time, file_info.file_size)
@@ -46,20 +51,26 @@ def simple_function(request):
     for file in file_zip:
         print(file, zipfile.is_zipfile(file))
 
-    directory = r'D:\Poligrafika\Poligrafika'
+    directory = r'D:\Poligrafika\Poligrafika\media'
 
-    paper = r'D:\Poligrafika\Poligrafika\Папір'
-    original = r'D:\Poligrafika\Poligrafika\Оригінал'
-    arhiv = r'D:\Poligrafika\Poligrafika\Архив'
 
+    paper = r'D:\Poligrafika\Poligrafika\media\Папір\350'
+    original = ('D:\Poligrafika\Poligrafika\media\Оригінал/%Y/%m/%d')
+    arhiv = r'D:\Poligrafika\Poligrafika\media\Архив'
+    date = r'/%Y/%m/%d/'
     for file in os.listdir(directory):
         ext = os.path.splitext(file)[1]
+        if not os.path.exists (directory):
+            os.mkdir(directory)
         match ext.lower():
             case '.pdf':
                 shutil.move(src=rf'{directory}\{file}', dst=paper)
             case '.zip':
                 shutil.move(src=rf'{directory}\{file}', dst=arhiv)
-    shutil.move(src=rf'{original}\{file}', dst=original)
+        folder = datetime.date.today()
+        os.makedirs(folder.strftime("Оригінал/%Y/%m/%d"), exist_ok=False)
 
-    shutil.rmtree('originals')
+
+
+
     return HttpResponse('''<html><script>window.location.replace('/');</script></html>''')

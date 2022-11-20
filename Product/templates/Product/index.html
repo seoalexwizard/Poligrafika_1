@@ -25,7 +25,7 @@
             <li class="nav-item"><a class="nav-link" href="statistic/">Statistic</a></li>
             <li class="nav-item"><a class="nav-link" href="config/">Config</a></li>
             <li class="nav-item"><a class="nav-link" href="test/">Test</a></li>
-            <li class="nav-item"><a class="nav-link" href="media/">База макетів</a></li>
+            <li class="nav-item"><a class="nav-link" href="media/Архив">База макетів</a></li>
         </ul>
     </div>
 </nav>
@@ -39,7 +39,7 @@
                 <h5 class="card-header">Замовлення: {{ item.order_id }}</h5>
                 <div class="card-body">
                     <h5 class="card-title">{{ item.p_type }} | {{ item.p_kind.name }} | {{ item.p_width.name }}x{{ item.p_height.name }} | {{ item.p_format.name }} | {{ item.p_density.name }}</h5>
-                    <p class="card-text">{{ item.file}}</p>Макет:
+                    <p class="card-text">{{ item.file}}</p>Архів:
 
                     <!-- Button that triggers python logic -->
 
@@ -47,7 +47,7 @@
 
                       <form action="/simple_function">
 
-                          <button id="stat-btn" class="btn btn-primary">Завантажити</button>
+                          <button id="stat-btn" class="btn btn-primary">Розпакувати</button>
                       </form>
                     </li>
 

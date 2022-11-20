@@ -66,7 +66,7 @@ class Product(models.Model):
     p_height = models.ForeignKey(PaperHeight,null=True, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name = 'Створено')
     updated_at = models.DateTimeField(auto_now=True, verbose_name = 'Оновлено')
-    file = models.FileField(upload_to='Замовлення/%Y/%m/%d/', verbose_name = 'Посилання на макет')
+    file = models.FileField(upload_to='Архив/%Y/%m/%d/', verbose_name = 'Посилання на макет')
     is_moved = models.BooleanField(default=True, verbose_name = 'Переміщено')
 
     def __str__(self):
