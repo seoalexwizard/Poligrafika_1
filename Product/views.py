@@ -1,15 +1,15 @@
-import time, datetime, os
+import datetime
 
-from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Product
-import errno
-import os
+from django.shortcuts import render
 
+from .models import Product
 
 def index(request):
     product = Product.objects.order_by('-created_at')
     return render(request, 'Product/index.html', {'product': product, 'order_id': 'Список Product'})
+
+
 
 def test(request):
     #print(dir(request))
@@ -38,23 +38,25 @@ def simple_function(request):
     import zipfile
     import shutil
     import os
-    import sys
+    try:
+        os.chdir('D:\Poligrafika\Poligrafika\media')
 
+        file_zip = zipfile.ZipFile('order-item-357146.zip', 'r')
 
-    os.chdir('D:\Poligrafika\Poligrafika\media')
-    file_zip = zipfile.ZipFile('order-item-357146.zip', 'r')
-    file_zip.extractall('./')
-    for file_info in file_zip.infolist():
-        print(file_info.filename, file_info.date_time, file_info.file_size)
+        file_zip.extractall('./')
 
-    file_zip.close()
+        for file_info in file_zip.infolist():
+            print(file_info.filename, file_info.date_time, file_info.file_size)
 
+        file_zip.close()
+    except FileNotFoundError as e:
+        print(e.errno)
+        return
     file_zip = ['views.py', 'order-item-357146.zip']
+
     for file in file_zip:
         print(file, zipfile.is_zipfile(file))
-
     directory = r'D:\Poligrafika\Poligrafika\media'
-
 
     paper = r'D:\Poligrafika\Poligrafika\media\Папір\350'
     original = ('D:\Poligrafika\Poligrafika\media\Оригінал/%Y/%m/%d')
