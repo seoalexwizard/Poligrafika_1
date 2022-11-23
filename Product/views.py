@@ -2,8 +2,10 @@ import datetime
 
 from django.http import HttpResponse
 from django.shortcuts import render
-
+from rest_framework import generics
 from .models import Product
+from .serializers import ProductSerializer
+
 
 def index(request):
     product = Product.objects.order_by('-created_at')
@@ -87,3 +89,8 @@ def simple_function(request):
 
 
     return HttpResponse('''<html><script>window.location.replace('/');</script></html>''')
+
+
+class ProductAPIView(generics.ListAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
