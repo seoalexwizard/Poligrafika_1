@@ -1,33 +1,38 @@
 import datetime
 
+from django.forms import model_to_dict
 from django.http import HttpResponse
 from django.shortcuts import render
 from rest_framework import generics
 from .models import Product
 from .serializers import ProductSerializer
-
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 def index(request):
     product = Product.objects.order_by('-created_at')
     return render(request, 'Product/index.html', {'product': product, 'order_id': 'Список Product'})
 
 
-
 def test(request):
-    #print(dir(request))
+    # print(dir(request))
     return HttpResponse('<h1>Спискок тестів</h1>')
 
+
 def dashboard(request):
-    #print(dir(request))
+    # print(dir(request))
     return HttpResponse('<h1>Dashboard SQL+Webhook</h1>')
 
+
 def statistic(request):
-    #print(dir(request))
+    # print(dir(request))
     return HttpResponse('<h1>SQL Вибірка данних</h1>')
 
+
 def config(request):
-    #print(dir(request))
+    # print(dir(request))
     return HttpResponse('Налаштування')
+
 
 def home(request):
     context = {
@@ -66,7 +71,7 @@ def simple_function(request):
     date = r'/%Y/%m/%d/'
     for file in os.listdir(directory):
         ext = os.path.splitext(file)[1]
-        if not os.path.exists (directory):
+        if not os.path.exists(directory):
             os.mkdir(directory)
         match ext.lower():
             case '.pdf':
@@ -85,12 +90,33 @@ def simple_function(request):
         else:
             print("Successfully created the directory %s " % folder)
 
-
-
-
     return HttpResponse('''<html><script>window.location.replace('/');</script></html>''')
 
+class ProductAPIView(APIView):
+    def get(self, request):
+        w = Product.objects.all()
+        return Response({'posts': ProductSerializer(w, many=True).data})
 
-class ProductAPIView(generics.ListAPIView):
-    queryset = Product.objects.all()
-    serializer_class = ProductSerializer
+    def post(self, request):
+        serializer = ProductSerializer(data = request.data)
+        serializer.is_valid(raise_exception=True)
+        post_new = Product.objects.create(
+            order_id = request.data['p_type'],
+            p_type = request.data['p_type'],
+            p_kind = request.data['p_kind'],
+            p_density = request.data['p_density'],
+            p_width = request.data['p_width'],
+            p_format = request.data['p_format'],
+            p_height = request.data['p_height'],
+            created_at = request.data['created_at'],
+            updated_at = request.data['updated_at'],
+            file = request.data['file'],
+            is_moved = request.data['is_moved']
+
+        )
+        return Response({'post': ProductSerializer(post_new).data})
+
+
+#class ProductAPIView(generics.ListAPIView):
+#    queryset = Product.objects.all()
+#   serializer_class = ProductSerializer
