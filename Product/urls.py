@@ -10,6 +10,7 @@ urlpatterns = [
     path('statistic/', statistic),
     path('config/', config),
     path('simple_function', views.simple_function),
-    path('api/v1/productlist/', ProductAPIView.as_view())
+    path('api/v1/productlist/', ProductAPIView.as_view()),
+    path('api/v1/productlist/<int:pk>/', ProductAPIView.as_view()),
 ]
 

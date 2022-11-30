@@ -26,11 +26,28 @@ class ProductSerializer(serializers.Serializer):
     p_width = serializers.CharField(max_length=50)
     p_format = serializers.CharField(max_length=50)
     p_height = serializers.CharField(max_length=50)
-    created_at = serializers.DateTimeField()
-    updated_at = serializers.DateTimeField()
+    created_at = serializers.DateTimeField(read_only=True)
+    updated_at = serializers.DateTimeField(read_only=True)
     file = serializers.FileField()
     is_moved = serializers.BooleanField(default=True)
 
+    def create(self, validated_data):
+        return  Product.objects.create(**validated_data)
+
+    def update(self, instance, validated_data):
+        instance.order_id = validated_data.get('order_id', instance.order_id)
+        instance.p_type = validated_data.get('p_type', instance.p_type)
+        instance.p_kind = validated_data.get('p_kind', instance.p_kind)
+        instance.p_density = validated_data.get('p_density', instance.p_density)
+        instance.p_width = validated_data.get('p_width', instance.p_width)
+        instance.p_format = validated_data.get('p_format', instance.p_format)
+        instance.p_height = validated_data.get('p_height', instance.p_height)
+        instance.created_at = validated_data.get('created_at', instance.created_at)
+        instance.updated_at = validated_data.get('updated_at', instance.updated_at)
+        instance.file = validated_data.get('file', instance.file)
+        instance.is_moved = validated_data.get('is_moved', instance.is_moved)
+        instance.save()
+        return instance
 #def encode():
 #   model = ProductModel('p_kind : 350', 'p_density', 'p_width', 'p_format', 'p_height', 'created_at', 'updated_at', 'file',  'is_moved')
 #    model_sr = ProductSerializer(model)
