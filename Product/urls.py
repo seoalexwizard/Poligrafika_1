@@ -11,6 +11,7 @@ urlpatterns = [
     path('config/', config),
     path('simple_function', views.simple_function),
     path('api/v1/productlist/', ProductAPIList.as_view()),
-    path('api/v1/productlist/<int:pk>/', ProductAPIList.as_view()),
+    path('api/v1/productlist/<int:pk>/', ProductAPIUpdate.as_view()),
+    path('api/v1/productdetail/<int:pk>/', ProductAPIDetailView.as_view()),
 ]
 

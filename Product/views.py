@@ -95,36 +95,46 @@ class ProductAPIList(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
-class ProductAPIView(APIView):
-    def get(self, request):
-        w = Product.objects.all()
-        return Response({'posts': ProductSerializer(w, many=True).data})
+class ProductAPIUpdate(generics.UpdateAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
 
-    def post(self, request):
-        serializer = ProductSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
+class ProductAPIDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
 
-        return Response({'post': serializer.data})
 
-    def put(self, requests, *args, **kwargs):
-        pk = kwargs.get('pk', None)
-        if not pk:
-            return Response({'error': 'Method PUT Not allowed'})
 
-        try:
-            instance = Product.objects.get(pk=pk)
-        except:
-            return Response({'error': 'Product does not exists'})
-        serializer = ProductSerializer(data=requests.data, instance=instance)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response({'post': serializer.data})
-    def delete(self, request, *args, **kwargs):
-        pk = kwargs.get('pk', None)
-        if not pk:
-            return Response({'error': 'Method Delete not allowed'})
-        return Response({'post': 'delete post' + str(pk)})
+# class ProductAPIView(APIView):
+#     def get(self, request):
+#         w = Product.objects.all()
+#         return Response({'posts': ProductSerializer(w, many=True).data})
+#
+#     def post(self, request):
+#         serializer = ProductSerializer(data=request.data)
+#         serializer.is_valid(raise_exception=True)
+#         serializer.save()
+#
+#         return Response({'post': serializer.data})
+#
+#     def put(self, requests, *args, **kwargs):
+#         pk = kwargs.get('pk', None)
+#         if not pk:
+#             return Response({'error': 'Method PUT Not allowed'})
+#
+#         try:
+#             instance = Product.objects.get(pk=pk)
+#         except:
+#             return Response({'error': 'Product does not exists'})
+#         serializer = ProductSerializer(data=requests.data, instance=instance)
+#         serializer.is_valid(raise_exception=True)
+#         serializer.save()
+#         return Response({'post': serializer.data})
+#     def delete(self, request, *args, **kwargs):
+#         pk = kwargs.get('pk', None)
+#         if not pk:
+#             return Response({'error': 'Method Delete not allowed'})
+#         return Response({'post': 'delete post' + str(pk)})
 
 #class ProductAPIView(generics.ListAPIView):
 #    queryset = Product.objects.all()
