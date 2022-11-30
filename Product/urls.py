@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import *
 from . import views
-from Product.views import ProductAPIView
+from Product.views import *
 
 urlpatterns = [
     path('', index),
@@ -10,7 +10,7 @@ urlpatterns = [
     path('statistic/', statistic),
     path('config/', config),
     path('simple_function', views.simple_function),
-    path('api/v1/productlist/', ProductAPIView.as_view()),
-    path('api/v1/productlist/<int:pk>/', ProductAPIView.as_view()),
+    path('api/v1/productlist/', ProductAPIList.as_view()),
+    path('api/v1/productlist/<int:pk>/', ProductAPIList.as_view()),
 ]
 

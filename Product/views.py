@@ -91,6 +91,9 @@ def simple_function(request):
             print("Successfully created the directory %s " % folder)
 
     return HttpResponse('''<html><script>window.location.replace('/');</script></html>''')
+class ProductAPIList(generics.ListCreateAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
 
 class ProductAPIView(APIView):
     def get(self, request):
