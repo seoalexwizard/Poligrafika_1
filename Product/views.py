@@ -3,7 +3,7 @@ import datetime
 from django.forms import model_to_dict
 from django.http import HttpResponse
 from django.shortcuts import render
-from rest_framework import generics
+from rest_framework import generics, viewsets
 from .models import Product
 from .serializers import ProductSerializer
 from rest_framework.response import Response
@@ -91,17 +91,27 @@ def simple_function(request):
             print("Successfully created the directory %s " % folder)
 
     return HttpResponse('''<html><script>window.location.replace('/');</script></html>''')
-class ProductAPIList(generics.ListCreateAPIView):
+
+
+class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
-class ProductAPIUpdate(generics.UpdateAPIView):
-    queryset = Product.objects.all()
-    serializer_class = ProductSerializer
 
-class ProductAPIDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Product.objects.all()
-    serializer_class = ProductSerializer
+
+
+
+# class ProductAPIList(generics.ListCreateAPIView):
+#     queryset = Product.objects.all()
+#     serializer_class = ProductSerializer
+#
+# class ProductAPIUpdate(generics.UpdateAPIView):
+#     queryset = Product.objects.all()
+#     serializer_class = ProductSerializer
+#
+# class ProductAPIDetailView(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = Product.objects.all()
+#     serializer_class = ProductSerializer
 
 
 

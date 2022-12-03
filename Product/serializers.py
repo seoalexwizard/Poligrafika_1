@@ -22,17 +22,17 @@ class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = '__all__'
-    # order_id = serializers.IntegerField()
-    # p_type = serializers.CharField(max_length=50)
-    # p_kind = serializers.CharField(max_length=50)
-    # p_density = serializers.CharField(max_length=50)
-    # p_width = serializers.CharField(max_length=50)
-    # p_format = serializers.CharField(max_length=50)
-    # p_height = serializers.CharField(max_length=50)
-    # created_at = serializers.DateTimeField(read_only=True)
-    # updated_at = serializers.DateTimeField(read_only=True)
-    # file = serializers.FileField()
-    # is_moved = serializers.BooleanField(default=True)
+        # order_id = serializers.IntegerField()
+        # p_type = serializers.CharField(max_length=50)
+        # p_kind = serializers.CharField(max_length=50)
+        # p_density = serializers.CharField(max_length=50)
+        # p_width = serializers.CharField(max_length=50)
+        # p_format = serializers.CharField(max_length=50)
+        # p_height = serializers.CharField(max_length=50)
+        # created_at = serializers.DateTimeField(read_only=True)
+        # updated_at = serializers.DateTimeField(read_only=True)
+        # file = serializers.FileField()
+        # is_moved = serializers.BooleanField(default=True)
 
 #    def create(self, validated_data):
 #        return  Product.objects.create(**validated_data)
