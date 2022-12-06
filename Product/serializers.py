@@ -19,6 +19,18 @@ from .models import Product
 #        self.is_moved = is_moved
 
 class ProductSerializer(serializers.ModelSerializer):
+    order_id = serializers.StringRelatedField()
+    p_type = serializers.StringRelatedField()
+    p_kind = serializers.StringRelatedField()
+    p_density = serializers.StringRelatedField()
+    p_width = serializers.StringRelatedField()
+    p_format = serializers.StringRelatedField()
+    p_height = serializers.StringRelatedField()
+    created_at = serializers.StringRelatedField()
+    updated_at = serializers.StringRelatedField()
+    file = serializers.StringRelatedField()
+    is_moved = serializers.StringRelatedField()
+
     class Meta:
         model = Product
         fields = '__all__'
